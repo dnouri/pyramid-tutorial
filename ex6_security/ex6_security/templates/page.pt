@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      metal:use-macro="load: master.pt">
+
+  <div metal:fill-slot="content">
+
+    <h1>${context.title}</h1>
+
+    <p>
+      ${context.description}
+    </p>
+
+    <p>
+      <!--
+        We use the 'structure:' keyword with the 'context.body' to tell
+        Chameleon that this variable should not be escaped, as it
+        contains HTML.
+
+        Try to remove the 'structure:' and see what happens.
+      -->
+      ${structure: context.body}
+    </p>
+
+  </div>
+
+</html>

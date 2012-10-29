@@ -1,0 +1,129 @@
+<html lang="en" metal:define-macro="main">
+  <head>
+    <meta charset="utf-8">
+    <title>${context.title} &mdash; FabCollab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="${context.description}">
+
+    <!-- Le styles -->
+    <link href="${request.static_url('ex4_forms:static/bootstrap/css/bootstrap.css')}" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="${request.static_url('ex4_forms:static/bootstrap/css/bootstrap-responsive.css')}" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav icon -->
+    <link rel="shortcut icon"
+          href="${request.static_url('ex4_forms:static/favicon.ico')}" />
+
+    <!-- Le javascript -->
+    <script src="${request.static_url('ex4_forms:static/jquery.js')}"></script>
+    <script src="${request.static_url('ex4_forms:static/bootstrap/js/bootstrap.js')}"></script>
+    <script src="${request.static_url('deform:static/scripts/deform.js')}"></script>
+    <script src="${request.static_url('deform:static/tinymce/jscripts/tiny_mce/jquery.tinymce.js')}"></script>
+    <script src="${request.static_url('deform:static/tinymce/jscripts/tiny_mce/tiny_mce.js')}"></script>
+    
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="${request.application_url}">FabCollab</a>
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> Username
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul>
+          </div>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="${request.application_url}">Home</a></li>
+              <li><a href="${request.application_url}/about/">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Actions</li>
+              <li><a href="${request.resource_url(context)}">View</a></li>
+              <li><a href="${request.resource_url(context, 'edit')}">Edit</a></li>
+              <li><a href="${request.resource_url(context, 'add-folder')}">Add folder</a></li>
+              <li><a href="${request.resource_url(context, 'add-page')}">Add page</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+
+          <div class="row-fluid">
+            <ul class="breadcrumb"
+                tal:define="breadcrumbs utils.breadcrumbs()">
+              <li tal:repeat="item breadcrumbs[:-1]">
+                <a href="${request.resource_url(item)}">${item.title}</a>
+                <span class="divider">/</span>
+              </li>
+              <li class="active" tal:define="item breadcrumbs[-1]">
+                ${item.title}
+              </li>
+            </ul>
+          </div>
+
+          <div tal:repeat="queue ('info', 'success', 'error', '')" tal:omit-tag="">
+            <div class="alert alert-${queue}"
+                 tal:define="messages request.session.pop_flash(queue)"
+                 tal:condition="messages"
+                 tal:repeat="message messages">
+              ${message}
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div metal:define-slot="content">
+              <h1>${context.title}</h1>
+            </div>
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; FabCollabMe 2012</p>
+        <p class="pull-right">
+          <img src="${request.static_url('ex4_forms:static/pyramid-small.png')}">
+        </p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+  </body>
+</html>

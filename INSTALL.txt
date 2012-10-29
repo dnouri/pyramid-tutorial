@@ -1,0 +1,151 @@
+=========================
+Installation instructions
+=========================
+
+You may download the latest version of this tutorial here:
+
+  https://github.com/dnouri/pyramid-tutorial/zipball/master
+
+Alternatively, clone with git::
+
+  $ git clone git@github.com:dnouri/pyramid-tutorial.git
+
+
+C compiler
+==========
+
+If you're on Debian or Ubuntu, you can install a C compiler with::
+
+  $ sudo apt-get install build-essential
+
+If you're using Mac OSX, you need to install Xcode:
+https://developer.apple.com/xcode/
+
+
+Python 2.6 or 2.7 and header files
+==================================
+
+On Debian or Ubuntu::
+
+  $ sudo apt-get install python2.7-dev
+
+Alternatively, compile from source::
+
+  [chrism@vitaminf ~]$ cd ~
+  [chrism@vitaminf ~]$ mkdir tmp
+  [chrism@vitaminf ~]$ mkdir opt
+  [chrism@vitaminf ~]$ cd tmp
+  [chrism@vitaminf tmp]$ wget \
+         http://www.python.org/ftp/python/2.6.4/Python-2.6.4.tgz
+  [chrism@vitaminf tmp]$ tar xvzf Python-2.6.4.tgz
+  [chrism@vitaminf tmp]$ cd Python-2.6.4
+  [chrism@vitaminf Python-2.6.4]$ ./configure \
+          --prefix=$HOME/opt/Python-2.6.4
+  [chrism@vitaminf Python-2.6.4]$ make; make install
+
+Once these steps are performed, the Python interpreter will be
+invokable via ``$HOME/opt/Python-2.6.4/bin/python`` from a shell
+prompt.
+
+
+Install virtualenv
+==================
+
+Try to see if you have virtualenv installed::
+
+  $ virtualenv . --no-site-packages
+
+If it says "command not found", you'll have to install virtualenv
+first, and re-run the command above after you completed installation.
+The virtualenv installation instructions vary between operating
+systems.
+
+
+Install virtualenv on Debian or Ubuntu
+--------------------------------------
+
+If you don't have virtualenv, and you're on Debian or Ubuntu, do::
+
+  $ sudo apt-get install python-virtualenv
+
+
+Install virtualenv on other systems
+-----------------------------------
+
+Download this file and run it with your Python interpreter to create
+the virtualenv::
+
+  $ curl https://raw.github.com/pypa/virtualenv/master/virtualenv.py
+  $ python virtualenv.py .
+
+If this doesn't work, try::
+
+  $ sudo easy_install virtualenv  # run this command as root
+
+and then create the virtualenv as normally.
+
+
+virtualenv's bin/python
+=======================
+
+After installing the virtualenv package, and creating your virtualenv
+directory, you should have a Python executable inside the ``bin/``
+directory.  Try to run it::
+
+  $ bin/python
+  Python 2.7.2+ (default, Oct  4 2011, 20:06:09) 
+  [GCC 4.6.1] on linux2
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> 
+
+
+Install Pyramid
+===============
+
+There's also ``bin/pip``, which you'll use to install Pyramid into
+your new virtualenv::
+
+  $ bin/pip install pyramid
+  Downloading/unpacking pyramid
+    Downloading pyramid-1.3.2.tar.gz (2.4Mb): 2.4Mb downloaded
+    Running setup.py egg_info for package pyramid
+  ...
+  Successfully installed pyramid Chameleon Mako WebOb repoze.lru zope.interface zope.deprecation venusian translationstring PasteDeploy MarkupSafe
+  Cleaning up...
+
+Great, you now have Pyramid installed!
+
+
+Run our first Pyramid web app
+=============================
+
+Our first example application consists of a single Python file ::
+
+  $ bin/python ex1_hello/hello.py
+  Server started at http://localhost:8080
+
+Now you can open http://localhost:8080/hello/world in your browser,
+and you should see "Hello world!".
+
+Press Ctrl-C to stop the application.
+
+If everything worked so far, continue with reading the contents of
+``ex1_hello/hello.py``.
+
+
+Should the instructions not work
+================================
+
+These instructions apply to Linux and Mac OSX systems.  If you're on
+Windows, you may want to refer to the Pyramid installation
+instructions online:
+http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/install.html
+
+If installation doesn't work, and you're sitting in the live tutorial,
+find a colleague who has a working installation and follow along with
+them.
+
+If you're not in a hurry, but still can't get installation to work,
+consider installing a recent Ubuntu in a virtual machine.
+Installation on Debian or Ubuntu is considerably easier than on other
+systems.

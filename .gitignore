@@ -1,0 +1,7 @@
+bin/
+Data.fs*
+*.egg-info
+*pyc
+include/
+lib/
+local

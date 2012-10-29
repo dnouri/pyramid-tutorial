@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      metal:use-macro="load: master.pt">
+
+  <div metal:fill-slot="content">
+
+    <h1>${context.title}</h1>
+
+    <p>
+      ${context.description}
+    </p>
+
+    <ul>
+      <li tal:repeat="item context.values()">
+        <a href="${request.resource_url(item)}">
+          ${item.title}
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+</html>

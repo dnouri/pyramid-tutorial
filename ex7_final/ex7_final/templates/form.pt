@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      metal:use-macro="load: master.pt">
+
+  <div metal:fill-slot="content">
+
+    <h1>${view.title}</h1>
+    <form tal:replace="structure form" />
+
+  </div>
+
+</html>
