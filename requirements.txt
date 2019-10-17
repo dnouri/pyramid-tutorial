@@ -6,7 +6,7 @@ Pygments==1.5
 WebOb==1.2
 ZConfig==2.9.3
 ZODB3==3.10.5
-colander==0.9.8
+colander==1.7.0
 deform==0.9.5
 deform-bootstrap==0.2.1
 distribute==0.6.19
