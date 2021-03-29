@@ -2,7 +2,7 @@ Chameleon==2.9.2
 Mako==0.7.0
 MarkupSafe==0.15
 PasteDeploy==1.5.0
-Pygments==1.5
+Pygments==2.7.4
 WebOb==1.2
 ZConfig==2.9.3
 ZODB3==3.10.5
